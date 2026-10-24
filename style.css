@@ -496,7 +496,7 @@ footer a {
 .indicador-carrossel {
     position: absolute;
     top: 8px;
-    right: 8px;
+    left: 8px;
     z-index: 2;
     padding: 4px 7px;
     border: 1px solid rgba(57, 67, 50, 0.1);
