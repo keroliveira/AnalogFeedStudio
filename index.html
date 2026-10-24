@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Feed Studio - Mesa de composição</title>
+    <meta name="description" content="Um espaço para organizar fotografias e experimentar composições para seu feed.">
+    <link rel="icon" href="favicon-analogfeedstudio.ico" sizes="any">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Identidade e apresentação do projeto -->
+    <header>
+        <img src="icone-analogfeedstudio.png" alt="Ícone ver oliva que simula um frame fotográfico analógico"
+            class="logo-projeto">
+        <h1>Analog Feed Studio</h1>
+        <p>Sua mesa de composição fotográfica</p>
+        <button type="button" id="alternar-tema" class="theme-toggle" aria-pressed="false">
+            ☾ Ativar tema escuro
+        </button>
+    </header>
+
+    <main>
+
+        <!-- Área principal: organiza as publicações na grade do perfil -->
+        <section aria-labelledby="composicao-titulo">
+            <div class="section-toolbar">
+                <div class="section-heading">
+                    <h2 id="composicao-titulo">Mesa de composição</h2>
+                    <p>Seu próximo arranjo começa aqui</p>
+
+                    <!-- O JavaScript atualiza este texto conforme as fileiras mudam -->
+                    <p id="contador-fileiras">1 fileira</p>
+                </div>
+
+                <!-- Ações que controlam a composição e a importação de imagens -->
+                <div class="toolbar-actions">
+                    <button type="button" class="button button-secondary" id="nova-fileira">
+                        Nova fileira
+                    </button>
+
+                    <button type="button" class="button button-primary" id="revelar-fotografias">
+                        Revelar fotografias
+                    </button>
+
+                    <button type="button" class="button button-secondary" id="desfazer-remocao" disabled>
+                        Desfazer remoção
+                    </button>
+                </div>
+            </div>
+
+            <!-- O JavaScript cria as fileiras e posições dentro deste contêiner -->
+            <div id="feed" aria-label="Composição do feed"></div>
+        </section>
+
+        <!-- Área de armazenamento visual das fotografias importadas -->
+        <section aria-labelledby="bandeja-titulo">
+            <h2 id="bandeja-titulo">Bandeja de revelação</h2>
+            <p>Suas fotografias disponíveis ficarão aqui</p>
+
+            <!--
+                O campo de arquivo fica oculto visualmente
+                O botão "Revelar fotografias" aciona este seletor por JavaScript
+                "multiple" permite selecionar várias imagens de uma vez
+            -->
+            <input type="file" id="seletor-fotografias" accept="image/*" multiple hidden>
+
+            <!-- Os cartões das fotografias são inseridos aqui pelo JavaScript -->
+            <div id="bandeja" aria-label="Fotografias disponíveis">
+                <p id="bandeja-vazia">Nenhuma fotografia revelada ainda.</p>
+            </div>
+        </section>
+
+        <!-- Área de gerenciamento e backup do projeto -->
+        <section aria-label="Gerenciamento do projeto">
+            <div class="toolbar-actions">
+                <button type="button" class="button button-secondary" id="salvar-projeto">
+                    Salvar projeto
+                </button>
+
+                <button type="button" class="button button-secondary" id="exportar-projeto">
+                    Exportar projeto
+                </button>
+
+                <button type="button" class="button button-secondary" id="importar-projeto">
+                    Importar projeto
+                </button>
+            </div>
+
+            <!-- O JavaScript atualizará o status do salvamento -->
+            <p id="estado-salvamento" role="status" aria-live="polite">
+                Nenhum salvamento realizado nesta sessão
+            </p>
+
+            <!-- Seletor de arquivo usado para importar um backup do projeto -->
+            <input type="file" id="seletor-projeto" accept=".json,application/json" hidden>
+        </section>
+
+    </main>
+
+    <!-- Rodapé e crédito do projeto -->
+    <footer>
+        <p>Um espaço para experimentar, compor e descobrir</p>
+        <small>Desenvolvido por <a href="https://www.instagram.com/keroliveira.dev">@keroliveira.dev</a></small>
+    </footer>
+
+    <!-- Carregamento do JavaScript -->
+    <script src="app.js"></script>
+
+</body>
+
+</html>
